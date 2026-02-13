@@ -45,7 +45,6 @@ class VotingService:
     # Resole api key
     @staticmethod
     def _resolve_key(provider: str, settings: Optional[models.SystemSettings]) -> Optional[str]:
-        """Look up the key in DB settings first, fall back to env var."""
         if settings and settings.api_keys:
             db_key = settings.api_keys.get(provider)
             if db_key:
@@ -131,7 +130,6 @@ class VotingService:
         raw_answers: Dict[str, str],
         session: Session,
     ) -> Dict:
-        """Each active model votes on the best candidate answer."""
         active = self.get_active_models(session)
         candidates = list(raw_answers.items())
         votes = {name: 0 for name in raw_answers}
