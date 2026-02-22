@@ -1,0 +1,49 @@
+{
+  "name": "counsel-of-ai",
+  "version": "1.0.0",
+  "description": "Counsel of AI — Multi-LLM Voting RAG Desktop App",
+  "main": "./build/electron/main.js",
+  "scripts": {
+    "predump": "cp ../frontend/app.py . && cp ../frontend/api_client.py .",
+    "dump": "dump-stlite-desktop-artifacts",
+    "serve": "cross-env NODE_ENV=production electron .",
+    "pack": "electron-builder --dir",
+    "app:dist": "npm run predump && npm run dump && electron-builder --mac",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "build": {
+    "appId": "com.counselofai.app",
+    "productName": "CounselOfAI",
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": [
+        "dmg"
+      ],
+      "icon": "../frontend/image/icon.icns"
+    },
+    "files": [
+      "build/**/*"
+    ],
+    "directories": {
+      "output": "dist"
+    }
+  },
+  "devDependencies": {
+    "@stlite/desktop": "^0.79.5",
+    "cross-env": "^7.0.3",
+    "electron": "34.3.0",
+    "electron-builder": "^24.13.3"
+  },
+  "stlite": {
+    "desktop": {
+      "files": [
+        "app.py",
+        "api_client.py"
+      ],
+      "entrypoint": "app.py",
+      "dependencies": [
+        "requests"
+      ]
+    }
+  }
+}

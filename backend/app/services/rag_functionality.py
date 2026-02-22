@@ -27,7 +27,6 @@ class RagService:
 
     # indexing
     def add_document_to_index(self, text: str, doc_id: int, collection_id: Optional[int] = None):
-        """Chunk, embed, and store a document's text in ChromaDB."""
         text_splitter = RecursiveCharacterTextSplitter(
             chunk_size=1000,
             chunk_overlap=100,
@@ -42,12 +41,10 @@ class RagService:
 
     # retrieve
     def _safe_k(self, k: int) -> int:
-        """Clamp k to the number of documents actually stored."""
         count = self.collection.count()
         return max(1, min(k, count)) if count > 0 else 0
 
     def get_relevant_context(self, query: str, k: int = 3) -> str:
-        """Global similarity search (no collection filter)."""
         n = self._safe_k(k)
         if n == 0:
             return ""
@@ -56,7 +53,6 @@ class RagService:
         return "\n---\n".join(docs)
 
     def query_collection(self, collection_id: int, query: str, k: int = 3) -> str:
-        """Similarity search scoped to a specific collection."""
         n = self._safe_k(k)
         if n == 0:
             return ""
@@ -72,7 +68,6 @@ class RagService:
 
     # cleanu
     def delete_collection_vectors(self, collection_id: int):
-        """Remove all vectors belonging to a given collection."""
         try:
             results = self.collection.get(where={"collection_id": collection_id})
             if results and results["ids"]:
@@ -82,7 +77,6 @@ class RagService:
             print(f"Warning: could not delete vectors for collection {collection_id}: {e}")
 
     def delete_document_vectors(self, doc_id: int):
-        """Remove all vectors belonging to a specific document."""
         try:
             results = self.collection.get(where={"doc_id": doc_id})
             if results and results["ids"]:

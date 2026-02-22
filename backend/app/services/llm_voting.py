@@ -65,7 +65,7 @@ class VotingService:
                 continue
             key = self._resolve_key(provider, settings)
             if not key:
-                print(f"⚠ Skipping {model_id}: no API key for provider '{provider}'")
+                print(f"Skipping {model_id}: no API key for provider '{provider}'")
                 continue
             llm = self._build_llm(model_id, key)
             if llm:

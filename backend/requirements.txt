@@ -1,0 +1,17 @@
+chromadb
+fastapi
+langchain-anthropic
+langchain-google-genai
+langchain-groq
+langchain-openai
+langchain-text-splitters
+pandas
+pydantic[email]
+PyPDF2
+python-dotenv
+SQLAlchemy
+bcrypt==4.0.1
+python-jose[cryptography]==3.3.0
+python-multipart
+urllib3<2
+streamlit
