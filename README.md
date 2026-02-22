@@ -14,47 +14,62 @@ This is a RAG app that uses multiple api keys to get answers from multiple LLM's
     - on Windows:
         python -m venv .venv
 
-    Activate virtual enviroment:
-        - on windows(command prompt):
-            .venv\Scripts\activate
-        - windos powershell:
-            .\.venv\Scripts\activate
-        - on macOS/Linux:
-            source .venv/bin/activate
 
-2. Install requirements in the virtual enviroment
+2. Activate virtual enviroment:
+   
+    - on windows(command prompt):
+        .venv\Scripts\activate
+    
+    - windos powershell:
+        .\.venv\Scripts\activate
+    
+    - on macOS/Linux:
+        source .venv/bin/activate
+
+
+3. Install requirements in the virtual enviroment:
+
     pip install -r requirements.txt
 
-3. Run the backend:
+
+4. Run the backend:
+   
     cd backend
     uvicorn main:app --reload
 
-4. Run the frontend while the backend is running:
+
+5. Run the frontend while the backend is running:
+
     cd frontend
     streamlit run app.py
 
-5. Access the app:
+
+6. Access the app:
+    
     Open the browser to the Streamlit URL - http://localhost:8501
 
-6. Log in with the already created credentials:
+
+7. Log in with the already created credentials:
+   
     email - user@example.com
     password - stringst
+
 
 ### For the api address: http://127.0.0.1:8000
 
 ### .env file configuration:
 
-# API keys:
+#### API keys:
 GOOGLE_API_KEY=your_api_key
 GROQ_API_KEY=your_api_key
 
-# Database 
+#### Database 
 DATABASE_URL=sqlite:///./sql_app.db
 
-# Auth 
+#### Auth 
 SECRET_KEY=a_random_secret_string_for_jwt
 
-## For actual app: 
+#### For actual app: 
     First 3 steps remain the same, then:
     Without env active install in /desktop_app: 
         - npm install
