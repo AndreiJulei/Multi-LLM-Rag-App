@@ -54,15 +54,12 @@ This is a RAG app that uses multiple api keys to get answers from multiple LLM's
 ### For the api address: http://127.0.0.1:8000
 
 ### .env file configuration:
-
-#### API keys:
+#API keys:
 GOOGLE_API_KEY=your_api_key
 GROQ_API_KEY=your_api_key
-
-#### Database 
+#Database 
 DATABASE_URL=sqlite:///./sql_app.db
-
-#### Auth 
+#Auth 
 SECRET_KEY=a_random_secret_string_for_jwt
 
 
